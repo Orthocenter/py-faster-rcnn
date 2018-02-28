@@ -8,6 +8,7 @@
 from fast_rcnn.config import cfg
 from utils.blob import im_list_to_blob
 from utils.timer import Timer
+import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 
@@ -108,10 +109,11 @@ def imdb_proposals(net, imdb):
         _t.toc()
         print 'im_proposals: {:d}/{:d} {:.3f}s' \
               .format(i + 1, imdb.num_images, _t.average_time)
-        if 0:
+        if 1:
+        #if 0:
             dets = np.hstack((imdb_boxes[i], scores))
             # from IPython import embed; embed()
-            _vis_proposals(im, dets[:3, :], thresh=0.9)
+            _vis_proposals(im, dets[:3, :], thresh=0.7)
             plt.show()
 
     return imdb_boxes

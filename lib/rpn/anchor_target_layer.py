@@ -25,8 +25,9 @@ class AnchorTargetLayer(caffe.Layer):
 
     def setup(self, bottom, top):
         layer_params = yaml.load(self.param_str_)
-        anchor_scales = layer_params.get('scales', (8, 16, 32))
-        self._anchors = generate_anchors(scales=np.array(anchor_scales))
+        anchor_scales = layer_params.get('scales', [2.6000, 3.3800, 4.3940, 5.7122, 7.4259, 9.6536, 12.5497, 16.3146, 21.2090])
+        anchor_aspect_ratios = layer_params.get('aspect_ratios', [1/0.41])
+        self._anchors = generate_anchors(ratios=np.array(anchor_aspect_ratios), scales=np.array(anchor_scales))
         self._num_anchors = self._anchors.shape[0]
         self._feat_stride = layer_params['feat_stride']
 
@@ -47,6 +48,7 @@ class AnchorTargetLayer(caffe.Layer):
 
         # allow boxes to sit over the edge by a small amount
         self._allowed_border = layer_params.get('allowed_border', 0)
+        print '_allowed_border', self._allowed_border
 
         height, width = bottom[0].data.shape[-2:]
         if DEBUG:

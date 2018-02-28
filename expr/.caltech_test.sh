@@ -1,0 +1,1 @@
+python tools/rpn_generate_caltech.py --def=/home/yxchen/py-faster-rcnn/models/caltech/VGG16/rpn_test.pt --net=/home/yxchen/py-faster-rcnn/output/default/caltech_train/vgg16_rpn_stage1_iter_16000.caffemodel --imdb=caltech_train

@@ -59,6 +59,7 @@ class RoIDataLayer(caffe.Layer):
             return self._blob_queue.get()
         else:
             db_inds = self._get_next_minibatch_inds()
+            #print 'db_inds:', db_inds
             minibatch_db = [self._roidb[i] for i in db_inds]
             return get_minibatch(minibatch_db, self._num_classes)
 
