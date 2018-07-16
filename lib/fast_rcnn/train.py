@@ -9,6 +9,7 @@
 
 import caffe
 from fast_rcnn.config import cfg
+import google.protobuf.text_format
 import roi_data_layer.roidb as rdl_roidb
 from utils.timer import Timer
 import numpy as np
